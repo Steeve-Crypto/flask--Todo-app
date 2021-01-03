@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+  {% if title%}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Main page</title>
+    {% endif %}
+</head>
+<body>
+<div class="ui raised very padded text container segment" style="margin-top: 100px;">
+
+  <h1 class="ui header" style="text-align: center;">Tasks Management</h1>
+
+  <form action="/add" method="POST" class="ui fluid form">
+    <div class="field">
+    <!-- <label for="title"><h3>Your task</h3></label><br> -->
+
+    <input type="text" name="task_name" placeholder="Enter your task"><br><br>
+
+    <button class="ui violet button" type="submit">Create Task</button>
+  </div>
+  </form>
+</div>
+
+<div class="ui raised very padded text container segments" style="padding-left: 40px;">
+  {% for t in task%}
+  <br>
+    <p>Created the {{ t.date }}</p>
+    <p>{{ t.task_name }}</p>
+    <a class="ui red button" href="/delete/{{ t.id }}">Delete</a><br><br>
+  {% endfor %}
+</div>
+</body>
+</html>
